@@ -4,11 +4,26 @@
     <style name="CircleImageStyle" parent="">
         <item name="cornerSize">50dp</item>
     </style>
+
+    <!--News Item Rounded Image Style-->
+    <style name="RoundedImageStyle" parent="">
+        <item name="cornerSize">10dp</item>
+    </style>
+
+
+    <!--Custom Card Appearance-->
+    <style name="BottomStartRoundedCornerCard" parent="">
+        <item name="cornerSizeBottomLeft">10dp</item>
+    </style>
+
+    <!--Tab Layout Style-->
     <style name="CustomTabLayout" parent="Widget.Design.TabLayout">
         <item name="tabTextAppearance">@style/CustomTextAppearance</item>
         <item name="tabIndicatorColor">@color/orange</item>
         <item name="tabBackground">@color/white</item>
     </style>
+
+    <!--Text Appearance for Tab Layout-->
     <style name="CustomTextAppearance" parent="TextAppearance.Design.Tab">
         <item name="textAllCaps">false</item>
         <item name="android:textSize">11sp</item>

@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.*
+import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.all_news.AllNewsFragment
 
 const val NUMBER_OF_TABS = 6
 class ViewPagerAdapter(

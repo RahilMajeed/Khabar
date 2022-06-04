@@ -8,7 +8,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FAFAFA"
+        android:background="@color/light_gray_background_color"
         tools:context=".feature_fetch_news.presentation.ui.settings.SettingsActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout

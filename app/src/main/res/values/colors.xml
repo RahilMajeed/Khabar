@@ -9,4 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="orange">#FF9100</color>
     <color name="Gray">#DE000000</color>
+
+    <!--Background color-->
+    <color name="light_gray_background_color">#FAFAFA</color>
 </resources>
