@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class FetchNewsUseCase @Inject constructor(
+class FetchAllNewsUseCase @Inject constructor(
     private val repository: NewsRepository
 ) {
 
@@ -18,7 +18,7 @@ class FetchNewsUseCase @Inject constructor(
         return flow {
             emit(Result.Loading())
             try {
-                val responseFromApi = repository.fetchLatestNews(options)
+                val responseFromApi = repository.fetchEverythingNews(options)
                 if (responseFromApi.isSuccessful && responseFromApi.body() != null){
                     emit(Result.Success(responseFromApi.body()!!.articleDtos.map { it.toArticleModel() }))
                 } else {

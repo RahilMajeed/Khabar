@@ -15,4 +15,10 @@ class NewsRepositoryImpl @Inject constructor(
     override suspend fun fetchLatestNews(options: Map<String,String>): Response<NewsDto> {
         return api.fetchTopHeadlines(options)
     }
+
+    /**
+     * Fetching news related to everything*/
+    override suspend fun fetchEverythingNews(options: Map<String, String>): Response<NewsDto> {
+        return api.fetchEverything(options)
+    }
 }

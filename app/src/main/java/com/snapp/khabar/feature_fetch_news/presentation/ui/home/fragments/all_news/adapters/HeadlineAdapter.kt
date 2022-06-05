@@ -8,10 +8,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.snapp.khabar.R
+import com.snapp.khabar.feature_fetch_news.domain.model.ArticleModel
 
-class HeadlineAdapter(
-    private val headlinesList: List<NewsModel>
-): RecyclerView.Adapter<HeadlineAdapter.HeadlineViewHolder>() {
+class HeadlineAdapter: RecyclerView.Adapter<HeadlineAdapter.HeadlineViewHolder>() {
+
+    private var headlinesList = emptyList<ArticleModel>()
 
     class HeadlineViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
@@ -20,13 +21,14 @@ class HeadlineAdapter(
         private val tvTime: TextView = itemView.findViewById(R.id.tvTimeStamp)
         private val ivNewsImage: ImageView = itemView.findViewById(R.id.ivNewsImage)
 
-        fun bind(newsModel: NewsModel){
+        fun bind(article: ArticleModel){
 
-            tvHeadline.text = newsModel.heading
-            tvTime.text = newsModel.time
+            tvHeadline.text = article.heading
+            tvTime.text = article.time
 
             Glide.with(itemView.context)
-                .load(newsModel.imageUrl)
+                .load(article.image)
+                .placeholder(R.drawable.error)
                 .into(ivNewsImage)
 
         }
@@ -45,5 +47,10 @@ class HeadlineAdapter(
 
     override fun getItemCount(): Int {
         return headlinesList.size
+    }
+
+    fun submitList(headlines: List<ArticleModel>){
+        headlinesList = headlines
+        notifyItemRangeChanged(0,headlines.size)
     }
 }

@@ -27,7 +27,8 @@ class AllNewsFragment: Fragment() {
 
     // Adapters
     private lateinit var newsAdapter: NewsAdapter
-    
+    private lateinit var headlineAdapter: HeadlineAdapter
+
     // Widgets
     private lateinit var progressBar: ProgressBar
 
@@ -43,69 +44,10 @@ class AllNewsFragment: Fragment() {
 
         // Instantiate Adapter
         newsAdapter = NewsAdapter()
+        headlineAdapter = HeadlineAdapter()
 
-        val newsList = listOf(
-            NewsModel(
-                "School Holidays",
-                "12 hours ago",
-                "https://th.bing.com/th/id/R.636537dc613b2dd438993cf656177647?rik=otkgp5UuQIJFBQ&riu=http%3a%2f%2fcdn.thinglink.me%2fapi%2fimage%2f347151190540156928%2f1024%2f10%2fscaletowidth%2f0%2f0%2f1%2f1%2ffalse%2ftrue%3fwait%3dtrue&ehk=dbBWB%2bILC7Qwl%2bxh4T39Q6qi8T1gl8%2b2zV1SCkY8f%2fk%3d&risl=&pid=ImgRaw&r=0"
-            ),
 
-            NewsModel(
-                "Breaking News",
-                "1 hour ago",
-                "https://th.bing.com/th/id/R.636537dc613b2dd438993cf656177647?rik=otkgp5UuQIJFBQ&riu=http%3a%2f%2fcdn.thinglink.me%2fapi%2fimage%2f347151190540156928%2f1024%2f10%2fscaletowidth%2f0%2f0%2f1%2f1%2ffalse%2ftrue%3fwait%3dtrue&ehk=dbBWB%2bILC7Qwl%2bxh4T39Q6qi8T1gl8%2b2zV1SCkY8f%2fk%3d&risl=&pid=ImgRaw&r=0"
-            ),
-            NewsModel(
-                "Bank Robbery",
-                "10 hours ago",
-                "https://www.bing.com/th?id=OIP.an2f2KjkPngipwIS15Z19gHaHj&w=106&h=108&c=8&rs=1&qlt=90&o=6&dpr=1.25&pid=3.1&rm=2"
-            ), NewsModel(
-                "New Upcoming Super Cars",
-                "6 hours ago",
-                "https://www.bing.com/th?id=OIP.G8EvxQnKZ_LMVJ6OVIOxdQHaEo&w=316&h=197&c=8&rs=1&qlt=90&o=6&dpr=1.25&pid=3.1&rm=2"
-            ),
-            NewsModel(
-                "School Holidays",
-                "12 hours ago",
-                "https://th.bing.com/th/id/R.636537dc613b2dd438993cf656177647?rik=otkgp5UuQIJFBQ&riu=http%3a%2f%2fcdn.thinglink.me%2fapi%2fimage%2f347151190540156928%2f1024%2f10%2fscaletowidth%2f0%2f0%2f1%2f1%2ffalse%2ftrue%3fwait%3dtrue&ehk=dbBWB%2bILC7Qwl%2bxh4T39Q6qi8T1gl8%2b2zV1SCkY8f%2fk%3d&risl=&pid=ImgRaw&r=0"
-            ),
-            NewsModel(
-                "School Holidays",
-                "12 hours ago",
-                "https://th.bing.com/th/id/R.636537dc613b2dd438993cf656177647?rik=otkgp5UuQIJFBQ&riu=http%3a%2f%2fcdn.thinglink.me%2fapi%2fimage%2f347151190540156928%2f1024%2f10%2fscaletowidth%2f0%2f0%2f1%2f1%2ffalse%2ftrue%3fwait%3dtrue&ehk=dbBWB%2bILC7Qwl%2bxh4T39Q6qi8T1gl8%2b2zV1SCkY8f%2fk%3d&risl=&pid=ImgRaw&r=0"
-            ),
-            NewsModel(
-                "School Holidays",
-                "12 hours ago",
-                "https://th.bing.com/th/id/R.636537dc613b2dd438993cf656177647?rik=otkgp5UuQIJFBQ&riu=http%3a%2f%2fcdn.thinglink.me%2fapi%2fimage%2f347151190540156928%2f1024%2f10%2fscaletowidth%2f0%2f0%2f1%2f1%2ffalse%2ftrue%3fwait%3dtrue&ehk=dbBWB%2bILC7Qwl%2bxh4T39Q6qi8T1gl8%2b2zV1SCkY8f%2fk%3d&risl=&pid=ImgRaw&r=0"
-            ),
-            NewsModel(
-                "School Holidays",
-                "12 hours ago",
-                "https://th.bing.com/th/id/R.636537dc613b2dd438993cf656177647?rik=otkgp5UuQIJFBQ&riu=http%3a%2f%2fcdn.thinglink.me%2fapi%2fimage%2f347151190540156928%2f1024%2f10%2fscaletowidth%2f0%2f0%2f1%2f1%2ffalse%2ftrue%3fwait%3dtrue&ehk=dbBWB%2bILC7Qwl%2bxh4T39Q6qi8T1gl8%2b2zV1SCkY8f%2fk%3d&risl=&pid=ImgRaw&r=0"
-            ),
-        )
-        val headLineList = listOf(
-            NewsModel(
-                "Summers are going to be awesome in Sahara desert",
-                "12 hours ago",
-                "https://images.pexels.com/photos/3244513/pexels-photo-3244513.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            ),
-
-            NewsModel(
-                "Book you trekking tour starting from Kashmir to Meghalaya.",
-                "1 hour ago",
-                "https://images.pexels.com/photos/1761279/pexels-photo-1761279.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            ),
-            NewsModel(
-                "Huge power cuts prevailing throughout the country.",
-                "10 hours ago",
-                "https://images.pexels.com/photos/1402850/pexels-photo-1402850.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            )
-        )
-
-        setupHeadlinesRecyclerView(view, headLineList)
+        setupHeadlinesRecyclerView(view)
 
         setupNewsRecyclerView(view)
 
@@ -119,6 +61,8 @@ class AllNewsFragment: Fragment() {
     }
 
     private fun setupObservers(){
+
+        // Observing all news here
         homeViewModel.allNewsLiveData.observe(viewLifecycleOwner){ result ->
             when(result){
                 is Result.Loading -> {
@@ -135,14 +79,32 @@ class AllNewsFragment: Fragment() {
                 }
             }
         }
+
+        // Observing Headlines Here
+        homeViewModel.headlines.observe(viewLifecycleOwner){ result ->
+            when(result){
+                is Result.Loading -> {
+                    progressBar.visibility = View.VISIBLE
+                }
+                is Result.Error -> {
+                    Log.d(TAG, "setupObservers: ${result.message}")
+                    progressBar.visibility = View.GONE
+                    Toast.makeText(context,result.message,Toast.LENGTH_LONG).show()
+                }
+                is Result.Success -> {
+                    progressBar.visibility = View.GONE
+                    headlineAdapter.submitList(result.data!!)
+                }
+            }
+        }
     }
 
     private fun setupHeadlinesRecyclerView(
-        view: View,
-        newsList: List<NewsModel>
+        view: View
+
     ) {
         val headlineRv = view.findViewById<RecyclerView>(R.id.rvHeadLines)
-        val headlineAdapter = HeadlineAdapter(newsList)
+        val headlineAdapter = HeadlineAdapter()
         headlineRv.adapter = headlineAdapter
         headlineRv.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)

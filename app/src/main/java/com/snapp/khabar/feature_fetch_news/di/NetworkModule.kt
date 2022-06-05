@@ -1,16 +1,15 @@
 package com.snapp.khabar.feature_fetch_news.di
 
-import android.app.Application
 import com.snapp.khabar.feature_fetch_news.core.Constants.BASE_URL
 import com.snapp.khabar.feature_fetch_news.data.remote.NewsApi
 import com.snapp.khabar.feature_fetch_news.data.repository.NewsRepositoryImpl
 import com.snapp.khabar.feature_fetch_news.domain.repository.NewsRepository
-import com.snapp.khabar.feature_fetch_news.domain.use_cases.FetchNewsUseCase
+import com.snapp.khabar.feature_fetch_news.domain.use_cases.FetchAllNewsUseCase
+import com.snapp.khabar.feature_fetch_news.domain.use_cases.FetchHeadlinesUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -47,8 +46,15 @@ object NetworkModule {
     // Provide Fetch News Use Case
     @Provides
     @Singleton
-    fun provideFetchUseCase(repository: NewsRepository): FetchNewsUseCase {
-        return FetchNewsUseCase(repository)
+    fun provideFetchUseCase(repository: NewsRepository): FetchAllNewsUseCase {
+        return FetchAllNewsUseCase(repository)
+    }
+
+    // Provide Fetch Headlines Use Case
+    @Provides
+    @Singleton
+    fun provideHeadlinesUseCase(repository: NewsRepository): FetchHeadlinesUseCase {
+        return FetchHeadlinesUseCase(repository)
     }
 
 }
