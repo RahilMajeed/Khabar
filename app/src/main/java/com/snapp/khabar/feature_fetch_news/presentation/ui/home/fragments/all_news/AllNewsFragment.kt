@@ -11,13 +11,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
 import com.snapp.khabar.R
 import com.snapp.khabar.feature_fetch_news.domain.util.Result
 import com.snapp.khabar.feature_fetch_news.presentation.ui.home.HomeViewModel
 import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.all_news.adapters.HeadlineAdapter
 import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.all_news.adapters.NewsModel
-import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.all_news.adapters.RecyclerViewAdapter
+import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.all_news.adapters.NewsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -27,7 +26,7 @@ class AllNewsFragment: Fragment() {
     private val homeViewModel: HomeViewModel by activityViewModels()
 
     // Adapters
-    private lateinit var newsAdapter: RecyclerViewAdapter
+    private lateinit var newsAdapter: NewsAdapter
     
     // Widgets
     private lateinit var progressBar: ProgressBar
@@ -43,7 +42,7 @@ class AllNewsFragment: Fragment() {
         progressBar = view.findViewById(R.id.progressBar)
 
         // Instantiate Adapter
-        newsAdapter = RecyclerViewAdapter()
+        newsAdapter = NewsAdapter()
 
         val newsList = listOf(
             NewsModel(

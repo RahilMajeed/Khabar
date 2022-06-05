@@ -14,11 +14,11 @@ class FetchNewsUseCase @Inject constructor(
     private val repository: NewsRepository
 ) {
 
-    suspend operator fun invoke(): Flow<Result<List<ArticleModel>>>{
+    suspend operator fun invoke(options: Map<String,String>): Flow<Result<List<ArticleModel>>>{
         return flow {
             emit(Result.Loading())
             try {
-                val responseFromApi = repository.fetchLatestNews("in",API_KEY)
+                val responseFromApi = repository.fetchLatestNews(options)
                 if (responseFromApi.isSuccessful && responseFromApi.body() != null){
                     emit(Result.Success(responseFromApi.body()!!.articleDtos.map { it.toArticleModel() }))
                 } else {

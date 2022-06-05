@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.snapp.khabar.R
 import com.snapp.khabar.feature_fetch_news.domain.model.ArticleModel
 
-class RecyclerViewAdapter: RecyclerView.Adapter<RecyclerViewAdapter.NewsModelViewHolder>(){
+class NewsAdapter: RecyclerView.Adapter<NewsAdapter.NewsModelViewHolder>(){
 
     private var newsList = emptyList<ArticleModel>()
 
@@ -26,6 +26,7 @@ class RecyclerViewAdapter: RecyclerView.Adapter<RecyclerViewAdapter.NewsModelVie
             desc.text = article.desc
             Glide.with(itemView.context)
                 .load(article.image)
+                .placeholder(R.drawable.error)
                 .into(image)
         }
 
@@ -48,5 +49,6 @@ class RecyclerViewAdapter: RecyclerView.Adapter<RecyclerViewAdapter.NewsModelVie
 
     fun submitList(articleList: List<ArticleModel>){
         newsList = articleList
+        notifyItemRangeChanged(0,articleList.size)
     }
 }

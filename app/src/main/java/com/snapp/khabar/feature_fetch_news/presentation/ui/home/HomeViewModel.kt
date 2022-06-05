@@ -26,7 +26,10 @@ class HomeViewModel @Inject constructor(
 
     private fun fetchAllNews(){
         viewModelScope.launch {
-            allNewsList = fetchNewsUseCase.invoke().asLiveData() as MutableLiveData<Result<List<ArticleModel>>>
+            val options = hashMapOf<String,String>()
+            options["country"] = "in"
+            options["apiKey"] = API_KEY
+            allNewsList = fetchNewsUseCase.invoke(options).asLiveData() as MutableLiveData<Result<List<ArticleModel>>>
         }
     }
 }

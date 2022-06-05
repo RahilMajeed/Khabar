@@ -8,9 +8,9 @@ import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.all_ne
 fun ArticleDto.toArticleModel(): ArticleModel {
     return ArticleModel(
         id = "",
-        heading = title,
-        time = publishedAt,
-        desc = description,
-        image = urlToImage
+        heading = title ?: "Title Unavailable",
+        time = publishedAt?: "Unavailable",
+        desc = description ?: "No description to show",
+        image = urlToImage ?: ""
     )
 }

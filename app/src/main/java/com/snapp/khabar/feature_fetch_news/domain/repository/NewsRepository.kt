@@ -6,6 +6,6 @@ import retrofit2.Response
 
 interface NewsRepository {
 
-    suspend fun fetchLatestNews(country: String, apiKey: String): Response<NewsDto>
+    suspend fun fetchLatestNews(options: Map<String,String>): Response<NewsDto>
 
 }

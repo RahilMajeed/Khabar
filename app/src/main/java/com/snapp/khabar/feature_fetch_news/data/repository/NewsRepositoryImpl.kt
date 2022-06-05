@@ -12,7 +12,7 @@ class NewsRepositoryImpl @Inject constructor(
 
     /**
      * Fetching latest news from the api */
-    override suspend fun fetchLatestNews(country: String, apiKey: String): Response<NewsDto> {
-        return api.fetchTopHeadlines(country, apiKey)
+    override suspend fun fetchLatestNews(options: Map<String,String>): Response<NewsDto> {
+        return api.fetchTopHeadlines(options)
     }
 }
