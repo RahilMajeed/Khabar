@@ -8,21 +8,24 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.snapp.khabar.R
+import com.snapp.khabar.feature_fetch_news.domain.model.ArticleModel
 
-class RecyclerViewAdapter(
-    private val newsList : List<NewsModel>
-) : RecyclerView.Adapter<RecyclerViewAdapter.NewsModelViewHolder>(){
+class RecyclerViewAdapter: RecyclerView.Adapter<RecyclerViewAdapter.NewsModelViewHolder>(){
+
+    private var newsList = emptyList<ArticleModel>()
 
     class NewsModelViewHolder(view : View) : RecyclerView.ViewHolder(view){
         private val heading: TextView = itemView.findViewById(R.id.tvNewsTitle)
         private val time: TextView  = itemView.findViewById(R.id.tvTimeStamp)
+        private val desc: TextView  = itemView.findViewById(R.id.tvNewsDesc)
         private val image: ImageView  = itemView.findViewById(R.id.ivNewsImage)
 
-        fun bind(news : NewsModel){
-            heading.text = news.heading
-            time.text = news.time
+        fun bind(article: ArticleModel){
+            heading.text = article.heading
+            time.text = article.time
+            desc.text = article.desc
             Glide.with(itemView.context)
-                .load(news.imageUrl)
+                .load(article.image)
                 .into(image)
         }
 
@@ -41,5 +44,9 @@ class RecyclerViewAdapter(
 
     override fun getItemCount(): Int {
         return newsList.size
+    }
+
+    fun submitList(articleList: List<ArticleModel>){
+        newsList = articleList
     }
 }

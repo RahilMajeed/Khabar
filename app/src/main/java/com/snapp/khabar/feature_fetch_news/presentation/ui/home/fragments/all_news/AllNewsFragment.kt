@@ -1,18 +1,36 @@
 package com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.all_news
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.snapp.khabar.R
+import com.snapp.khabar.feature_fetch_news.domain.util.Result
+import com.snapp.khabar.feature_fetch_news.presentation.ui.home.HomeViewModel
 import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.all_news.adapters.HeadlineAdapter
 import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.all_news.adapters.NewsModel
 import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.all_news.adapters.RecyclerViewAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AllNewsFragment: Fragment() {
+
+    // ViewModels
+    private val homeViewModel: HomeViewModel by activityViewModels()
+
+    // Adapters
+    private lateinit var newsAdapter: RecyclerViewAdapter
+    
+    // Widgets
+    private lateinit var progressBar: ProgressBar
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -20,7 +38,12 @@ class AllNewsFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_all_news,container,false)
+        
+        // Instantiate Widgets
+        progressBar = view.findViewById(R.id.progressBar)
 
+        // Instantiate Adapter
+        newsAdapter = RecyclerViewAdapter()
 
         val newsList = listOf(
             NewsModel(
@@ -85,10 +108,34 @@ class AllNewsFragment: Fragment() {
 
         setupHeadlinesRecyclerView(view, headLineList)
 
-        setupNewsRecyclerView(view, newsList)
+        setupNewsRecyclerView(view)
 
         return view
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setupObservers()
+    }
+
+    private fun setupObservers(){
+        homeViewModel.allNewsLiveData.observe(viewLifecycleOwner){ result ->
+            when(result){
+                is Result.Loading -> {
+                    progressBar.visibility = View.VISIBLE
+                }
+                is Result.Error -> {
+                    Log.d(TAG, "setupObservers: ${result.message}")
+                    progressBar.visibility = View.GONE
+                    Toast.makeText(context,result.message,Toast.LENGTH_LONG).show()
+                }
+                is Result.Success -> {
+                    progressBar.visibility = View.GONE
+                    newsAdapter.submitList(result.data!!)
+                }
+            }
+        }
     }
 
     private fun setupHeadlinesRecyclerView(
@@ -103,13 +150,13 @@ class AllNewsFragment: Fragment() {
     }
 
     private fun setupNewsRecyclerView(
-        view: View,
-        newsList: List<NewsModel>
+        view: View
     ) {
         val recyclerView = view.findViewById<RecyclerView>(R.id.rvNews)
-        val newsAdapter = RecyclerViewAdapter(newsList)
         recyclerView.adapter = newsAdapter
         recyclerView.layoutManager = LinearLayoutManager(context)
     }
 
 }
+
+private const val TAG = "AllNewsFragment"
