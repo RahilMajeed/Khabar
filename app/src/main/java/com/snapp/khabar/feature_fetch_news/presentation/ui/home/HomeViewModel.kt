@@ -32,7 +32,7 @@ class HomeViewModel @Inject constructor(
     private fun fetchHeadlines() {
         viewModelScope.launch {
             val options = hashMapOf<String,String>()
-            options["domains"] = "bbc.co.uk,techcrunch.com"
+            options["country"] = "in"
             options["apiKey"] = API_KEY
             _headlines = fetchHeadlinesUseCase.invoke(options).asLiveData() as MutableLiveData<Result<List<ArticleModel>>>
         }
@@ -41,7 +41,7 @@ class HomeViewModel @Inject constructor(
     private fun fetchAllNews(){
         viewModelScope.launch {
             val options = hashMapOf<String,String>()
-            options["country"] = "in"
+            options["domains"] = "bbc.co.uk,techcrunch.com"
             options["apiKey"] = API_KEY
             allNewsList = fetchAllNewsUseCase.invoke(options).asLiveData() as MutableLiveData<Result<List<ArticleModel>>>
         }

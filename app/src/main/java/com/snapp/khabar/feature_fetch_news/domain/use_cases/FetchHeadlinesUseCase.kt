@@ -1,5 +1,6 @@
 package com.snapp.khabar.feature_fetch_news.domain.use_cases
 
+import android.util.Log
 import com.snapp.khabar.feature_fetch_news.domain.mappers.toArticleModel
 import com.snapp.khabar.feature_fetch_news.domain.model.ArticleModel
 import com.snapp.khabar.feature_fetch_news.domain.repository.NewsRepository
@@ -23,8 +24,11 @@ class FetchHeadlinesUseCase @Inject constructor(
                     emit(Result.Error(responseFromApi.message()))
                 }
             } catch (e: Exception){
+                Log.d(TAG, "invoke: ${e.message.toString()}")
                 emit(Result.Error(e.message.toString()))
             }
         }
     }
 }
+
+private const val TAG = "FetchHeadlinesUseCase"

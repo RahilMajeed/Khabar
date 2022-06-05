@@ -51,6 +51,6 @@ class HeadlineAdapter: RecyclerView.Adapter<HeadlineAdapter.HeadlineViewHolder>(
 
     fun submitList(headlines: List<ArticleModel>){
         headlinesList = headlines
-        notifyItemRangeChanged(0,headlines.size)
+        notifyItemRangeChanged(0,headlines.size-1)
     }
 }
