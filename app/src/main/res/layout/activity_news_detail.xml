@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/ivNewsImage"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/dp"
+            android:transitionName="imageTransition"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearance="@style/RoundedImageStyle" />
+
+        <TextView
+            android:id="@+id/tvTimeStamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="9dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="3 hours ago"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/ivNewsImage"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btnBookMark"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="end"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_baseline_bookmark_24"
+            app:layout_constraintEnd_toEndOf="@id/ivNewsImage"
+            app:layout_constraintTop_toTopOf="@id/ivNewsImage"
+            app:tint="@color/white" />
+
+        <TextView
+            android:transitionName="headingTransition"
+            android:id="@+id/tvNewsTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text=" “Putting in the Seed” by Robert Frost"
+            android:textColor="@color/headingTextColor"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivNewsImage" />
+
+        <TextView
+            android:layout_marginTop="16dp"
+            android:id="@+id/tvNewsDesc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingEnd="20dp"
+            android:paddingStart="20dp"
+            android:textColor="@color/descriptionTextColor"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNewsTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageButton
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="16dp"
+            android:id="@+id/backKey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_keyboard_arrow_left"
+            android:background="#00FFFFFF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/white"/>
+
+        <ImageButton
+            android:id="@+id/shareKey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_round_share_24"
+            app:layout_constraintEnd_toStartOf="@+id/btnBookMark"
+            android:background="#00FFFFFF"
+            app:tint="@color/white"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</ScrollView>

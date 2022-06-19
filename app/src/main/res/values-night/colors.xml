@@ -13,19 +13,12 @@
     <!--Background color-->
     <color name="light_gray_background_color">#FAFAFA</color>
 
-    <!--Day Theme Colors-->
-    <color name="backgroundColor">#FAFAFA</color>
-    <color name="newsCardBackgroundColor">#ffffff</color>
-    <color name="headingTextColor">#DE000000</color>
-    <color name="descriptionTextColor">#AB000000</color>
-    <color name="iconColor">#DE000000</color>
-
 
     <!--Night Theme Colors-->
-    <color name="nightBackgroundColor">#A4000000</color>
-    <color name="nightnewsCardBackgroundColor">#C6000000</color>
-    <color name="nightheadingTextColor">#DEFFFFFF</color>
-    <color name="nightdescriptionTextColor">#ABFFFFFF</color>
-    <color name="nighticonColor">#FF9100</color>
+    <color name="backgroundColor">#AB000000</color>
+    <color name="newsCardBackgroundColor">#A4131313</color>
+    <color name="headingTextColor">#DEFFFFFF</color>
+    <color name="descriptionTextColor">#ABFFFFFF</color>
+    <color name="iconColor">#FF9100</color>
 
 </resources>

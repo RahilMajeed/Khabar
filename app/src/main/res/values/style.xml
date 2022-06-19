@@ -20,12 +20,13 @@
     <style name="CustomTabLayout" parent="Widget.Design.TabLayout">
         <item name="tabTextAppearance">@style/CustomTextAppearance</item>
         <item name="tabIndicatorColor">@color/orange</item>
-        <item name="tabBackground">@color/white</item>
+        <item name="tabBackground">@color/backgroundColor</item>
     </style>
 
     <!--Text Appearance for Tab Layout-->
     <style name="CustomTextAppearance" parent="TextAppearance.Design.Tab">
         <item name="textAllCaps">false</item>
+        <item name="android:textColor">@color/headingTextColor</item>
         <item name="android:textSize">11sp</item>
         <item name="rippleColor">@color/orange</item>
     </style>
