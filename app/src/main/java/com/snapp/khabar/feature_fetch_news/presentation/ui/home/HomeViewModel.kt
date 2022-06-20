@@ -18,18 +18,19 @@ class HomeViewModel @Inject constructor(
     private val fetchHeadlinesUseCase: FetchHeadlinesUseCase
 ): ViewModel() {
 
+    // Headlines
+    private var _headlines : MutableLiveData<Result<List<ArticleModel>>> = MutableLiveData()
+
+    val headlines get() = _headlines as LiveData<Result<List<ArticleModel>>>
+    // All News Observables
+    private var allNewsList: MutableLiveData<Result<List<ArticleModel>>> = MutableLiveData()
+
+    val allNewsLiveData get() = allNewsList as LiveData<Result<List<ArticleModel>>>
+
     init {
         fetchHeadlines()
         fetchAllNews()
     }
-
-    // Headlines
-    private var _headlines : MutableLiveData<Result<List<ArticleModel>>> = MutableLiveData()
-    val headlines get() = _headlines as LiveData<Result<List<ArticleModel>>>
-
-    // All News Observables
-    private var allNewsList: MutableLiveData<Result<List<ArticleModel>>> = MutableLiveData()
-    val allNewsLiveData get() = allNewsList as LiveData<Result<List<ArticleModel>>>
 
 
     private fun fetchHeadlines() {
