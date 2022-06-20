@@ -23,7 +23,6 @@ import kotlinx.coroutines.flow.collect
 @AndroidEntryPoint
 class AllNewsFragment: BaseFragment(1) {
 
-
     lateinit var headlineAdapter : HeadlineAdapter
 
     override fun onCreateView(
@@ -62,7 +61,7 @@ class AllNewsFragment: BaseFragment(1) {
 
         }
 
-       headlineAdapter.submitData(getDummyHeadLineList())
+ //      headlineAdapter.submitData(getDummyHeadLineList())
 
         return view
 

@@ -18,20 +18,18 @@ class HomeViewModel @Inject constructor(
     private val fetchHeadlinesUseCase: FetchHeadlinesUseCase
 ): ViewModel() {
 
-    private lateinit var headLinesOptions: HashMap<String,String>
-
     init {
-        headLinesOptions["country"] = "in"
-        headLinesOptions["apiKey"] = API_KEY
+        fetchHeadlines()
+        fetchAllNews()
     }
 
     // Headlines
-    var headlines = fetchHeadlinesUseCase.invoke(headLinesOptions).asLiveData()
- //   val headlines get() = _headlines as LiveData<Result<List<ArticleModel>>>
+    private var _headlines : MutableLiveData<Result<List<ArticleModel>>> = MutableLiveData()
+    val headlines get() = _headlines as LiveData<Result<List<ArticleModel>>>
 
     // All News Observables
     private var allNewsList: MutableLiveData<Result<List<ArticleModel>>> = MutableLiveData()
- //   val allNewsLiveData get() = allNewsList as LiveData<Result<List<ArticleModel>>>
+    val allNewsLiveData get() = allNewsList as LiveData<Result<List<ArticleModel>>>
 
 
     private fun fetchHeadlines() {
@@ -39,7 +37,7 @@ class HomeViewModel @Inject constructor(
             val options = hashMapOf<String,String>()
             options["country"] = "in"
             options["apiKey"] = API_KEY
-           // _headlines = fetchHeadlinesUseCase.invoke(options)
+            _headlines = fetchHeadlinesUseCase.invoke(options).asLiveData() as MutableLiveData<Result<List<ArticleModel>>>
         }
     }
 
@@ -48,7 +46,7 @@ class HomeViewModel @Inject constructor(
             val options = hashMapOf<String,String>()
             options["domains"] = "bbc.co.uk,techcrunch.com"
             options["apiKey"] = API_KEY
-           // allNewsList = fetchAllNewsUseCase.invoke(options) as LiveData<List<ArticleModel>> as MutableLiveData<Result<List<ArticleModel>>>
+            allNewsList = fetchAllNewsUseCase.invoke(options).asLiveData() as MutableLiveData<Result<List<ArticleModel>>>
         }
     }
 }
