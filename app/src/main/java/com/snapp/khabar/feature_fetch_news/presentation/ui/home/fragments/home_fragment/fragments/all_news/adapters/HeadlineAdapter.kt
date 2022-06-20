@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.snapp.khabar.R
+import com.snapp.khabar.feature_fetch_news.presentation.util.HelperFunctions
 
 class HeadlineAdapter(): RecyclerView.Adapter<HeadlineAdapter.HeadlineViewHolder>() {
 
@@ -25,7 +26,7 @@ class HeadlineAdapter(): RecyclerView.Adapter<HeadlineAdapter.HeadlineViewHolder
         fun bind(newsModel: NewsModel){
 
             tvHeadline.text = newsModel.heading
-            tvTime.text = newsModel.time
+            tvTime.text = HelperFunctions.getFormattedTimeStamp(newsModel.time.toString())
 
             Glide.with(itemView.context)
                 .load(newsModel.imageUrl)

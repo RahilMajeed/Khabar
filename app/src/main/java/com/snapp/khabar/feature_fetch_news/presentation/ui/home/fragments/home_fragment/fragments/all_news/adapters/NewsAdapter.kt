@@ -13,6 +13,7 @@ import com.snapp.khabar.R
 import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.bookmark.BookmarkFragmentDirections
 import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.home_fragment.HomeFragmentDirections
 import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.search.SearchFragmentDirections
+import com.snapp.khabar.feature_fetch_news.presentation.util.HelperFunctions.getFormattedTimeStamp
 
 class NewsAdapter(
     val adapterParent: Int
@@ -28,7 +29,7 @@ class NewsAdapter(
         fun bind(news : NewsModel){
             heading.text = news.heading
             desc.text = news.description
-            time.text = news.time
+            time.text = getFormattedTimeStamp(news.time.toString())
             Glide.with(itemView.context)
                 .load(news.imageUrl)
                 .placeholder(R.drawable.dp)

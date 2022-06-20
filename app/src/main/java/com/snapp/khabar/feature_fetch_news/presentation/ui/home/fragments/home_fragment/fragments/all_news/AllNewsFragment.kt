@@ -125,7 +125,7 @@ class AllNewsFragment: BaseFragment(1) {
         recyclerView.isNestedScrollingEnabled=false
         recyclerView.adapter = newsAdapter
         recyclerView.layoutManager = LinearLayoutManager(context)
-        newsAdapter.submitData(getDummyNewsList())
+    //    newsAdapter.submitData(getDummyNewsList())
 
 
     }
