@@ -15,10 +15,12 @@ class FetchHeadlinesUseCase @Inject constructor(
 
     operator fun invoke(options: Map<String,String>): Flow<Result<List<ArticleModel>>> {
         return flow {
+            Log.d(TAG, "invoke: ")
             emit(Result.Loading())
             try {
                 val responseFromApi = repository.fetchLatestNews(options)
                 if (responseFromApi.isSuccessful && responseFromApi.body() != null){
+                    Log.d(TAG, "Success: ${responseFromApi.body()!!.articleDtos}")
                     emit(Result.Success(responseFromApi.body()!!.articleDtos.map { it.toArticleModel() }))
                 } else {
                     emit(Result.Error(responseFromApi.message()))

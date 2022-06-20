@@ -25,6 +25,8 @@ class AllNewsFragment: BaseFragment(1) {
 
     lateinit var headlineAdapter : HeadlineAdapter
 
+    private val homeViewModel: HomeViewModel by activityViewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,8 +39,48 @@ class AllNewsFragment: BaseFragment(1) {
 
         setupNewsRecyclerView(view)
 
+
+        return view
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        observeAllNews()
+        observeHeadlines()
+    }
+
+
+
+    private fun observeAllNews() {
+        homeViewModel.allNewsLiveData.observe(viewLifecycleOwner) { result ->
+            when (result) {
+
+                is Result.Loading -> {
+                    Log.d(TAG, "Loading: ")
+
+                }
+                is Result.Error -> {
+                    Log.d(TAG, "Error ${result.message}")
+
+                }
+                is Result.Success -> {
+                    Log.d(TAG, "Data ${result.data}")
+                    val data = result.data?.map {
+                        it.toNewsModel()
+                    }
+                    if (data != null) {
+                        newsAdapter.submitData(data)
+                    }
+                }
+            }
+
+        }
+    }
+
+    private fun observeHeadlines() {
         homeViewModel.headlines.observe(viewLifecycleOwner) { result ->
-            when(result){
+            when (result) {
 
                 is Result.Loading -> {
                     Log.d(TAG, "Loading: ")
@@ -60,11 +102,6 @@ class AllNewsFragment: BaseFragment(1) {
             }
 
         }
-
- //      headlineAdapter.submitData(getDummyHeadLineList())
-
-        return view
-
     }
 
 

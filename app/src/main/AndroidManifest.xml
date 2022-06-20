@@ -15,7 +15,7 @@
         android:theme="@style/Theme.Khabar">
         <activity android:name=".feature_fetch_news.presentation.ui.news_detail.NewsDetailActivity"/>
         <activity android:name=".MainActivity"/>
-        <activity android:name=".feature_fetch_news.presentation.ui.home.HomeActivity">
+        <activity android:name=".feature_fetch_news.presentation.ui.home.HomeActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

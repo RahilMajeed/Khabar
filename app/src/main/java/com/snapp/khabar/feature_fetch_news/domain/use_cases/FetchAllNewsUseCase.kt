@@ -1,5 +1,6 @@
 package com.snapp.khabar.feature_fetch_news.domain.use_cases
 
+import android.util.Log
 import com.snapp.khabar.feature_fetch_news.core.Constants.API_KEY
 import com.snapp.khabar.feature_fetch_news.data.remote.dto.NewsDto
 import com.snapp.khabar.feature_fetch_news.domain.mappers.toArticleModel
@@ -20,13 +21,17 @@ class FetchAllNewsUseCase @Inject constructor(
             try {
                 val responseFromApi = repository.fetchEverythingNews(options)
                 if (responseFromApi.isSuccessful && responseFromApi.body() != null){
+                    Log.d(TAG, "Success : ${responseFromApi.body()!!.articleDtos}")
                     emit(Result.Success(responseFromApi.body()!!.articleDtos.map { it.toArticleModel() }))
                 } else {
                     emit(Result.Error(responseFromApi.message()))
                 }
             } catch (e: Exception){
+                Log.d(TAG, "Exception: ${e.message.toString()}")
                 emit(Result.Error(e.message.toString()))
             }
         }
     }
 }
+
+private const val TAG = "FetchAllNewsUseCase"

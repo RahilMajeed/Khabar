@@ -12,7 +12,7 @@ open class BaseFragment(
     private val adapterType: Int
 ): Fragment() {
 
-    val homeViewModel: HomeViewModel by activityViewModels()
+
 
     /**
      * Making News Adapter a Global variable so that data can be submitted to it
