@@ -5,15 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.snapp.khabar.R
 import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.BaseFragment
-import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.home_fragment.fragments.all_news.adapters.NewsAdapter
-import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.home_fragment.fragments.all_news.adapters.NewsModel
-import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.home_fragment.fragments.all_news.adapters.getDummyNewsList
 
 class BookmarkFragment: BaseFragment(3) {
 
@@ -29,7 +25,6 @@ class BookmarkFragment: BaseFragment(3) {
             findNavController().navigateUp()
         }
         setupNewsRecyclerView(view)
-        newsAdapter.submitData(getDummyNewsList())
         return view
     }
 

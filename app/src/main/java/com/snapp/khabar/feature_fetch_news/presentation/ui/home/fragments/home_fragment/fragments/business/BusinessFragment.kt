@@ -4,14 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.snapp.khabar.R
 import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.BaseFragment
-import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.home_fragment.fragments.all_news.adapters.NewsAdapter
-import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.home_fragment.fragments.all_news.adapters.NewsModel
-import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.home_fragment.fragments.all_news.adapters.getDummyNewsList
 
 class BusinessFragment: BaseFragment(1) {
 
@@ -23,7 +19,7 @@ class BusinessFragment: BaseFragment(1) {
         val view = inflater.inflate(R.layout.business_fragment_layout, container, false)
         setupNewsRecyclerView(view)
 
-        newsAdapter.submitData(getDummyNewsList())
+    //    newsAdapter.submitData(getDummyNewsList())
         return view
 
     }

@@ -29,7 +29,8 @@ class NewsAdapter(
         fun bind(news : NewsModel){
             heading.text = news.heading
             desc.text = news.description
-            time.text = getFormattedTimeStamp(news.time.toString())
+            time.text = news.time
+//            time.text = getFormattedTimeStamp(news.time.toString())
             Glide.with(itemView.context)
                 .load(news.imageUrl)
                 .placeholder(R.drawable.dp)

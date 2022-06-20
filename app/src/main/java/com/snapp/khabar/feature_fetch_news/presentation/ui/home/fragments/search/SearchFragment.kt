@@ -1,18 +1,13 @@
 package com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.search
 
-import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageButton
-import androidx.appcompat.widget.SearchView
-import androidx.core.content.ContextCompat.getSystemService
-import androidx.core.content.getSystemService
 import androidx.core.widget.doOnTextChanged
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,8 +15,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.snapp.khabar.R
 import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.BaseFragment
 import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.home_fragment.fragments.all_news.adapters.NewsModel
-import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.home_fragment.fragments.all_news.adapters.getDummyNewsList
-import java.util.*
 
 
 class SearchFragment:BaseFragment(2) {
@@ -59,14 +52,15 @@ class SearchFragment:BaseFragment(2) {
     private fun getResultsFound(query: String?): List<NewsModel>{
         if (query != null){
             val numberOfCharsToCompare = query.length
-            return getDummyNewsList()
-                .filter { newsModel ->
-                    newsModel.heading!!.length >= numberOfCharsToCompare
-                }
-                .filter { newsModel ->
-                newsModel.heading!!.substring(0,numberOfCharsToCompare).lowercase(Locale.ROOT) == query.lowercase(
-                    Locale.ROOT)
-            }
+            return emptyList()
+//            return getDummyNewsList()
+//                .filter { newsModel ->
+//                    newsModel.heading!!.length >= numberOfCharsToCompare
+//                }
+//                .filter { newsModel ->
+//                newsModel.heading!!.substring(0,numberOfCharsToCompare).lowercase(Locale.ROOT) == query.lowercase(
+//                    Locale.ROOT)
+//            }
         }
         return emptyList()
     }

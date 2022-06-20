@@ -3,6 +3,7 @@ package com.snapp.khabar.feature_fetch_news.presentation.ui.news_detail
 
 import android.os.Bundle
 import android.view.View
+import android.webkit.WebView
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -18,10 +19,11 @@ class NewsDetailActivity : AppCompatActivity() {
 
     // Declaring widgets
     private lateinit var newsHeadLineTv: TextView
-    private lateinit var newsDescTv: TextView
+   // private lateinit var newsDescTv: TextView
     private lateinit var timeTv: TextView
     private lateinit var backBtn: ImageButton
     private lateinit var newsIv: ImageView
+    private lateinit var webView: WebView
 
     // Args
     private val newsArgs: NewsDetailActivityArgs by navArgs()
@@ -42,10 +44,11 @@ class NewsDetailActivity : AppCompatActivity() {
 
         // Defining widgets
         newsHeadLineTv = findViewById(R.id.tvNewsTitle)
-        newsDescTv = findViewById(R.id.tvNewsDesc)
+       // newsDescTv = findViewById(R.id.tvNewsDesc)
         timeTv = findViewById(R.id.tvTimeStamp)
         backBtn = findViewById(R.id.backKey)
         newsIv = findViewById(R.id.ivNewsImage)
+        webView = findViewById(R.id.wvNewsDescrption)
 
         val newsItem = newsArgs.newsItem
 
@@ -74,8 +77,11 @@ class NewsDetailActivity : AppCompatActivity() {
             return
         }
         newsHeadLineTv.text = item.heading
-        newsDescTv.text = item.description
+       // newsDescTv.text = item.description
         timeTv.text = item.time
+
+        // Load data in webview
+        webView.loadUrl(item.url)
 
         // Setting image through glide
         Glide.with(this)

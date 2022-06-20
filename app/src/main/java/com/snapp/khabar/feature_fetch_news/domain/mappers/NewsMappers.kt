@@ -11,7 +11,8 @@ fun ArticleDto.toArticleModel(): ArticleModel {
         heading = title ?: "Title Unavailable",
         time = publishedAt?: "Unavailable",
         desc = description ?: "No description to show",
-        image = urlToImage ?: ""
+        image = urlToImage ?: "",
+        url = url ?: "http:\\google.com"
     )
 }
 
@@ -21,6 +22,7 @@ fun ArticleModel.toNewsModel() : NewsModel {
         heading = heading,
         description = desc,
         time = time,
-        imageUrl = image
+        imageUrl = image,
+        url = url
     )
 }

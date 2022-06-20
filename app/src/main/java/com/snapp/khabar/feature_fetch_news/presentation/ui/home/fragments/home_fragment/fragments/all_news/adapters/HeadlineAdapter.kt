@@ -26,7 +26,8 @@ class HeadlineAdapter(): RecyclerView.Adapter<HeadlineAdapter.HeadlineViewHolder
         fun bind(newsModel: NewsModel){
 
             tvHeadline.text = newsModel.heading
-            tvTime.text = HelperFunctions.getFormattedTimeStamp(newsModel.time.toString())
+            tvTime.text = newsModel.time
+//            tvTime.text = HelperFunctions.getFormattedTimeStamp(newsModel.time.toString())
 
             Glide.with(itemView.context)
                 .load(newsModel.imageUrl)
@@ -39,7 +40,7 @@ class HeadlineAdapter(): RecyclerView.Adapter<HeadlineAdapter.HeadlineViewHolder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeadlineViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_headline_layout,parent,false)
 
-        getDummyHeadLineList()
+        //getDummyHeadLineList()
 
         return HeadlineViewHolder(view)
     }

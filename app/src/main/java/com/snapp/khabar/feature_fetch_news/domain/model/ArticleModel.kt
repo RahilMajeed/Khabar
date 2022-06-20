@@ -5,5 +5,6 @@ data class ArticleModel(
     val heading: String,
     val time: String,
     val desc: String,
-    val image: String
+    val image: String,
+    val url: String
 )
