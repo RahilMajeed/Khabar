@@ -61,10 +61,10 @@ class SearchFragment:BaseFragment(2) {
             val numberOfCharsToCompare = query.length
             return getDummyNewsList()
                 .filter { newsModel ->
-                    newsModel.heading.length >= numberOfCharsToCompare
+                    newsModel.heading!!.length >= numberOfCharsToCompare
                 }
                 .filter { newsModel ->
-                newsModel.heading.substring(0,numberOfCharsToCompare).lowercase(Locale.ROOT) == query.lowercase(
+                newsModel.heading!!.substring(0,numberOfCharsToCompare).lowercase(Locale.ROOT) == query.lowercase(
                     Locale.ROOT)
             }
         }

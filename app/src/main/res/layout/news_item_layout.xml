@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:background="@color/newsCardBackgroundColor"
-                android:src="@drawable/ic_baseline_bookmark_24"
+                android:src="@drawable/ic_bookmark"
                 app:tint="@color/orange" />
 
 

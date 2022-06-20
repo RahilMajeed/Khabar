@@ -7,6 +7,8 @@ import com.snapp.khabar.feature_fetch_news.domain.use_cases.FetchAllNewsUseCase
 import com.snapp.khabar.feature_fetch_news.domain.use_cases.FetchHeadlinesUseCase
 import com.snapp.khabar.feature_fetch_news.domain.util.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -16,25 +18,28 @@ class HomeViewModel @Inject constructor(
     private val fetchHeadlinesUseCase: FetchHeadlinesUseCase
 ): ViewModel() {
 
+    private lateinit var headLinesOptions: HashMap<String,String>
+
+    init {
+        headLinesOptions["country"] = "in"
+        headLinesOptions["apiKey"] = API_KEY
+    }
+
     // Headlines
-    private var _headlines: MutableLiveData<Result<List<ArticleModel>>> = MutableLiveData()
-    val headlines get() = _headlines as LiveData<Result<List<ArticleModel>>>
+    var headlines = fetchHeadlinesUseCase.invoke(headLinesOptions).asLiveData()
+ //   val headlines get() = _headlines as LiveData<Result<List<ArticleModel>>>
 
     // All News Observables
     private var allNewsList: MutableLiveData<Result<List<ArticleModel>>> = MutableLiveData()
-    val allNewsLiveData get() = allNewsList as LiveData<Result<List<ArticleModel>>>
+ //   val allNewsLiveData get() = allNewsList as LiveData<Result<List<ArticleModel>>>
 
-    init {
-        fetchHeadlines()
-        fetchAllNews()
-    }
 
     private fun fetchHeadlines() {
         viewModelScope.launch {
             val options = hashMapOf<String,String>()
             options["country"] = "in"
             options["apiKey"] = API_KEY
-            _headlines = fetchHeadlinesUseCase.invoke(options).asLiveData() as MutableLiveData<Result<List<ArticleModel>>>
+           // _headlines = fetchHeadlinesUseCase.invoke(options)
         }
     }
 
@@ -43,7 +48,7 @@ class HomeViewModel @Inject constructor(
             val options = hashMapOf<String,String>()
             options["domains"] = "bbc.co.uk,techcrunch.com"
             options["apiKey"] = API_KEY
-            allNewsList = fetchAllNewsUseCase.invoke(options).asLiveData() as MutableLiveData<Result<List<ArticleModel>>>
+           // allNewsList = fetchAllNewsUseCase.invoke(options) as LiveData<List<ArticleModel>> as MutableLiveData<Result<List<ArticleModel>>>
         }
     }
 }

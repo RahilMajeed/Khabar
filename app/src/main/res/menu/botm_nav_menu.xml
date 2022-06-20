@@ -13,7 +13,7 @@
 
     <item
         android:id="@+id/bookmarks"
-        android:icon="@drawable/ic_baseline_bookmark_24"
+        android:icon="@drawable/ic_bookmark"
         android:title="Bookmarks"/>
 
     <item

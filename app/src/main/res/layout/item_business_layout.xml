@@ -69,7 +69,7 @@
 
             <ImageButton
                 android:id="@+id/btnBookMark"
-                android:src="@drawable/ic_baseline_bookmark_24"
+                android:src="@drawable/ic_bookmark"
                 app:tint="@color/orange"
                 android:background="@color/white"
                 android:layout_width="wrap_content"

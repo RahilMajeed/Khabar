@@ -13,7 +13,7 @@ class FetchHeadlinesUseCase @Inject constructor(
     private val repository: NewsRepository
 ) {
 
-    suspend operator fun invoke(options: Map<String,String>): Flow<Result<List<ArticleModel>>> {
+    operator fun invoke(options: Map<String,String>): Flow<Result<List<ArticleModel>>> {
         return flow {
             emit(Result.Loading())
             try {

@@ -1,16 +1,47 @@
 package com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.home_fragment.fragments.all_news.adapters
 
+import android.os.Parcel
 import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
+
 
 @Parcelize
 data class NewsModel(
-    val heading : String,
-    val description : String,
-    val time : String,
-    val imageUrl : String
+    val heading: String?,
+    val description: String?,
+    val time: String?,
+    val imageUrl: String?
 
-): Parcelable
+): Parcelable {
+    constructor(parcel: Parcel) : this(
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString()
+    )
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(heading)
+        parcel.writeString(description)
+        parcel.writeString(time)
+        parcel.writeString(imageUrl)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<NewsModel> {
+        override fun createFromParcel(parcel: Parcel): NewsModel {
+            return NewsModel(parcel)
+        }
+
+        override fun newArray(size: Int): Array<NewsModel?> {
+            return arrayOfNulls(size)
+        }
+    }
+}
+
+annotation class Parcelize
 
 
 fun getDummyNewsList() =
