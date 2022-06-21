@@ -1,8 +1,7 @@
 package com.snapp.khabar.feature_fetch_news.domain.use_cases
 
 import android.util.Log
-import com.snapp.khabar.feature_fetch_news.core.Constants.API_KEY
-import com.snapp.khabar.feature_fetch_news.data.remote.dto.NewsDto
+import com.snapp.khabar.feature_fetch_news.data.repository.NewsRepositoryImpl
 import com.snapp.khabar.feature_fetch_news.domain.mappers.toArticleModel
 import com.snapp.khabar.feature_fetch_news.domain.model.ArticleModel
 import com.snapp.khabar.feature_fetch_news.domain.repository.NewsRepository

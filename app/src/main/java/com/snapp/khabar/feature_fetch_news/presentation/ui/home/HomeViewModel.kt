@@ -2,18 +2,19 @@ package com.snapp.khabar.feature_fetch_news.presentation.ui.home
 
 import androidx.lifecycle.*
 import com.snapp.khabar.feature_fetch_news.core.Constants.API_KEY
+import com.snapp.khabar.feature_fetch_news.data.local.entities.NewsEntity
 import com.snapp.khabar.feature_fetch_news.domain.model.ArticleModel
-import com.snapp.khabar.feature_fetch_news.domain.use_cases.FetchAllNewsUseCase
-import com.snapp.khabar.feature_fetch_news.domain.use_cases.FetchHeadlinesUseCase
+import com.snapp.khabar.feature_fetch_news.domain.use_cases.*
 import com.snapp.khabar.feature_fetch_news.domain.util.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
+    private val getAllNewsUseCase: GetAllNewsFromLocalDatabaseUseCase,
+    private val insertNewsEntityUseCase: InsertNewsEntityUseCase,
+    private val deleteNewsEntityUseCase: DeleteNewsEntityUseCase,
     private val fetchAllNewsUseCase: FetchAllNewsUseCase,
     private val fetchHeadlinesUseCase: FetchHeadlinesUseCase
 ): ViewModel() {
@@ -27,9 +28,33 @@ class HomeViewModel @Inject constructor(
 
     val allNewsLiveData get() = allNewsList as LiveData<Result<List<ArticleModel>>>
 
+    /**
+     * Saved Articles Observable
+     * */
+    val savedNews = getAllNewsUseCase.invoke().asLiveData()
+
+
     init {
         fetchHeadlines()
         fetchAllNews()
+    }
+
+    /**
+     * Inserting news entity in database
+     * */
+    fun insertNewsEntity(newsEntity: NewsEntity){
+        viewModelScope.launch {
+            insertNewsEntityUseCase.invoke(newsEntity)
+        }
+    }
+
+    /**
+     * Deleting news entity in database
+     * */
+    fun deleteNewsEntity(newsEntity: NewsEntity){
+        viewModelScope.launch {
+            deleteNewsEntityUseCase.invoke(newsEntity)
+        }
     }
 
 

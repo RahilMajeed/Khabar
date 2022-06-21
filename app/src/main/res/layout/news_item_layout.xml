@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginTop="8dp"
     android:background="@color/backgroundColor"
     android:layout_height="wrap_content"
@@ -33,8 +34,9 @@
         <TextView
             android:id="@+id/tvNewsTitle"
             android:transitionName="headingTransition"
-            android:text="The odd philosphy icelanders live by"
+            tools:text="The odd philosphy icelanders live by"
             android:layout_width="wrap_content"
+            android:maxLines="1"
             android:textColor="@color/headingTextColor"
             android:textSize="14sp"
             android:layout_height="wrap_content"/>
@@ -45,9 +47,9 @@
             android:id="@+id/tvNewsDesc"
             android:textSize="11sp"
             android:layout_marginEnd="8dp"
-            android:text="This is to report the loss of my bicycle that happened at afternoon at about 3 pm. I had kept my bicycle outside the bakery shop that and the bike was locked, i just picked up some bread and to my surprise."
+            tools:text="This is to report the loss of my bicycle that happened at afternoon at about 3 pm. I had kept my bicycle outside the bakery shop that and the bike was locked, i just picked up some bread and to my surprise."
             android:layout_width="wrap_content"
-            android:maxLines="3"
+            android:maxLines="2"
             android:ellipsize="end"
             android:textColor="@color/descriptionTextColor"
             android:layout_height="wrap_content"/>

@@ -3,6 +3,7 @@ package com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.home_
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.findNavController
@@ -16,7 +17,8 @@ import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.search
 import com.snapp.khabar.feature_fetch_news.presentation.util.HelperFunctions.getFormattedTimeStamp
 
 class NewsAdapter(
-    val adapterParent: Int
+    val adapterParent: Int,
+    val onBookmarkClick: (newsModel: NewsModel) -> Unit
 ) : RecyclerView.Adapter<NewsAdapter.NewsModelViewHolder>(){
     private var newsList = emptyList<NewsModel>()
 
@@ -25,6 +27,7 @@ class NewsAdapter(
         private val desc: TextView = itemView.findViewById(R.id.tvNewsDesc)
         private val time: TextView  = itemView.findViewById(R.id.tvTimeStamp)
         private val image: ImageView  = itemView.findViewById(R.id.ivNewsImage)
+        private val bookmarkBtn: ImageButton = itemView.findViewById(R.id.btnBookMark)
 
         fun bind(news : NewsModel){
             heading.text = news.heading
@@ -42,6 +45,12 @@ class NewsAdapter(
                 navigateToDetailsScreen(news)
 
             }
+
+
+            bookmarkBtn.setOnClickListener {
+                onBookmarkClick.invoke(news)
+            }
+
         }
 
         private fun navigateToDetailsScreen(news: NewsModel) {
