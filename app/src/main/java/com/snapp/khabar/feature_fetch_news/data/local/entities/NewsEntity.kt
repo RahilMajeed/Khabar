@@ -12,9 +12,8 @@ data class NewsEntity(
     val time : String,
     val description : String,
     val imageUrl: String,
-    val url: String,
     val isBookmarked: Boolean,
     @PrimaryKey
-    val id: Int? = null,
+    val url: String,
 
 )

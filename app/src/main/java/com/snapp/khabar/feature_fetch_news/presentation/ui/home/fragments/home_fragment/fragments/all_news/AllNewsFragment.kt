@@ -5,10 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.snapp.khabar.R
@@ -18,14 +15,13 @@ import com.snapp.khabar.feature_fetch_news.presentation.ui.home.HomeViewModel
 import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.BaseFragment
 import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.home_fragment.fragments.all_news.adapters.*
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class AllNewsFragment: BaseFragment(1) {
 
     lateinit var headlineAdapter : HeadlineAdapter
 
-    private val homeViewModel: HomeViewModel by activityViewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,37 +42,12 @@ class AllNewsFragment: BaseFragment(1) {
 
     override fun onResume() {
         super.onResume()
-        observeAllNews()
+        observeNews(homeViewModel.allNewsLiveData)
         observeHeadlines()
     }
 
 
 
-    private fun observeAllNews() {
-        homeViewModel.allNewsLiveData.observe(viewLifecycleOwner) { result ->
-            when (result) {
-
-                is Result.Loading -> {
-                    Log.d(TAG, "Loading: ")
-
-                }
-                is Result.Error -> {
-                    Log.d(TAG, "Error ${result.message}")
-
-                }
-                is Result.Success -> {
-                    Log.d(TAG, "Data ${result.data}")
-                    val data = result.data?.map {
-                        it.toNewsModel()
-                    }
-                    if (data != null) {
-                        newsAdapter.submitData(data)
-                    }
-                }
-            }
-
-        }
-    }
 
     private fun observeHeadlines() {
         homeViewModel.headlines.observe(viewLifecycleOwner) { result ->
@@ -107,12 +78,10 @@ class AllNewsFragment: BaseFragment(1) {
 
     private fun setupHeadlinesRecyclerView(view: View) {
         val headlineRv = view.findViewById<RecyclerView>(R.id.rvHeadLines)
-         headlineAdapter = HeadlineAdapter()
+        headlineAdapter = HeadlineAdapter()
         headlineRv.adapter = headlineAdapter
         headlineRv.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-
-
 
     }
 

@@ -6,4 +6,11 @@ object Constants {
     const val TOP_HEADLINES_END_POINT = "v2/top-headlines"
 
     const val EVERYTHING_NEWS = "v2/everything"
+
+    const val BUSINESS = "business"
+    const val TECH = "tech"
+    const val POLITICS = "politics"
+    const val SCIENCE = "science"
+    const val SPORTS = "sports"
+
 }

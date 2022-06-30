@@ -14,13 +14,12 @@ import com.snapp.khabar.R
 import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.bookmark.BookmarkFragmentDirections
 import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.home_fragment.HomeFragmentDirections
 import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.search.SearchFragmentDirections
-import com.snapp.khabar.feature_fetch_news.presentation.util.HelperFunctions.getFormattedTimeStamp
 
 class NewsAdapter(
     val adapterParent: Int,
     val onBookmarkClick: (newsModel: NewsModel) -> Unit
 ) : RecyclerView.Adapter<NewsAdapter.NewsModelViewHolder>(){
-    private var newsList = emptyList<NewsModel>()
+    var newsList = emptyList<NewsModel>()
 
     inner class NewsModelViewHolder(view : View) : RecyclerView.ViewHolder(view){
         private val heading: TextView = itemView.findViewById(R.id.tvNewsTitle)
@@ -36,8 +35,6 @@ class NewsAdapter(
 //            time.text = getFormattedTimeStamp(news.time.toString())
             Glide.with(itemView.context)
                 .load(news.imageUrl)
-                .placeholder(R.drawable.dp)
-                .error(R.drawable.dp)
                 .into(image)
 
             itemView.setOnClickListener {
@@ -52,6 +49,7 @@ class NewsAdapter(
             }
 
         }
+
 
         private fun navigateToDetailsScreen(news: NewsModel) {
 

@@ -19,7 +19,7 @@ class SportsFragment: BaseFragment(1) {
         val view = inflater.inflate(R.layout.fragment_sports_layout,container,false)
 
         setUpRecyclerView(view)
-       // newsAdapter.submitData(getDummyNewsList())
+
         return view
     }
     private fun setUpRecyclerView(view: View){
@@ -27,5 +27,8 @@ class SportsFragment: BaseFragment(1) {
         recyclerView.adapter = newsAdapter
         recyclerView.layoutManager = LinearLayoutManager(context)
     }
-
+    override fun onResume() {
+        super.onResume()
+        observeNews(homeViewModel.sportsNewsLiveData)
+    }
 }

@@ -23,27 +23,19 @@ class PoliticsFragment: BaseFragment(1) {
     ): View? {
        val view = inflater.inflate(R.layout.politics_fragment_layout,container,false)
         setupNewsRecyclerView(view)
-
-        /**
-         * Submitting data to the news adapter
-         * We will get hold of dummy data from data class NewsModel
-         * */
-       // newsAdapter.submitData(getDummyNewsList())
-        getDataFromCloud()
-
-
         return view
     }
 
-    private fun getDataFromCloud(){
-      //  val data = getDummyNewsList()
-      //  newsAdapter.submitData(data)
-    }
+
 
     private fun setupNewsRecyclerView(view: View) {
         val recyclerView = view.findViewById<RecyclerView>(R.id.rvNews)
         recyclerView.adapter = newsAdapter
         recyclerView.layoutManager = LinearLayoutManager(context)
 
+    }
+    override fun onResume() {
+        super.onResume()
+        observeNews(homeViewModel.politicsNewsLiveData)
     }
 }

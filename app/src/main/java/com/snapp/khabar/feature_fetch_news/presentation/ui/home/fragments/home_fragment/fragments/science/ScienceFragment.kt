@@ -18,7 +18,7 @@ class ScienceFragment: BaseFragment(1) {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_science_layout,container,false)
         setUpNewsRecyclerView(view)
-     //   newsAdapter.submitData(getDummyNewsList())
+
 
         return view
     }
@@ -26,5 +26,9 @@ class ScienceFragment: BaseFragment(1) {
         val recyclerView = view.findViewById<RecyclerView>(R.id.rvNews)
         recyclerView.adapter = newsAdapter
         recyclerView.layoutManager = LinearLayoutManager(context)
+    }
+    override fun onResume() {
+        super.onResume()
+        observeNews(homeViewModel.scienceNewsLiveData)
     }
 }

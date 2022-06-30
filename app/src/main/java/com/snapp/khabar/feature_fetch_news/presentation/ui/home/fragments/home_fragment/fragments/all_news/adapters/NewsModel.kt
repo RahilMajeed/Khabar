@@ -10,7 +10,7 @@ data class NewsModel(
     val description: String? = "",
     val time: String? = "",
     val imageUrl: String? = "",
-    val url: String
+    val url: String,
 
 ): Parcelable
 

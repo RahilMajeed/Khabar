@@ -8,7 +8,6 @@ import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.home_f
 
 fun ArticleDto.toArticleModel(): ArticleModel {
     return ArticleModel(
-        id = "",
         heading = title ?: "Title Unavailable",
         time = publishedAt?: "Unavailable",
         desc = description ?: "No description to show",

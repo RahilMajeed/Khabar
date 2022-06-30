@@ -33,13 +33,3 @@ class HomeActivity : AppCompatActivity() {
 
     }
 }
-
-/**
- * TODO:
- * Step 1: Change name of activity home to fragment home.
- * Step 2: Create a new Fragment with name home fragment
- * Step 3: Copy code from HomeActivity onCreate method to newly created HomeFragments onCreateView method.
- * Step 4: Rename activity_main layout to activity_home layout
- * Step 5: Link newly created activity_home layout to the HomeActivity
- * Step 6: Link bottomNavBar with the navhost and navController in the HomeActivities onCreate method
- * */

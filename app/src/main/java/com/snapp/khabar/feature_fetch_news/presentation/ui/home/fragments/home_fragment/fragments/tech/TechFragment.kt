@@ -18,20 +18,20 @@ class TechFragment: BaseFragment(1) {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_tech_layout,container,false)
         setupNewsRecyclerView(view)
-
-        setDataFromCloudIntoRecyclerView()
+        
 
         return view
     }
 
-    private fun setDataFromCloudIntoRecyclerView() {
-       // val data = getDummyNewsList()
-      //  newsAdapter.submitData(data)
-    }
+
 
     private fun setupNewsRecyclerView(view: View?) {
         val newsRecyclerView = view?.findViewById<RecyclerView>(R.id.rvNews)
         newsRecyclerView?.adapter = newsAdapter
         newsRecyclerView?.layoutManager = LinearLayoutManager(context)
+    }
+    override fun onResume() {
+        super.onResume()
+        observeNews(homeViewModel.techNewsLiveData)
     }
 }
