@@ -104,6 +104,30 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
+        <TextView
+            android:id="@+id/newUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:layout_marginEnd="48dp"
+            android:text="New user?"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/textView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/regesterHere"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:text="Regester"
+            android:textColor="#DE000000"
+            app:layout_constraintBottom_toBottomOf="@id/newUser"
+            app:layout_constraintStart_toEndOf="@id/newUser"
+            app:layout_constraintTop_toTopOf="@id/newUser" />
+
 
         <TextView
             android:id="@+id/textView2"
@@ -127,7 +151,7 @@
             app:layout_constraintBottom_toBottomOf="@id/textView2"
             app:layout_constraintTop_toTopOf="@id/textView2"
             android:text="LOGIN"
-            android:textColor="@color/black"/>
+            android:textColor="#DE000000"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

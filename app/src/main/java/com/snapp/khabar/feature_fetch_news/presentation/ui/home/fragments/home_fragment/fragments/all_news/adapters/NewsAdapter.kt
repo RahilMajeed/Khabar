@@ -6,10 +6,12 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.snapp.khabar.R
 import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.bookmark.BookmarkFragmentDirections
 import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.home_fragment.HomeFragmentDirections
@@ -27,6 +29,8 @@ class NewsAdapter(
         private val time: TextView  = itemView.findViewById(R.id.tvTimeStamp)
         private val image: ImageView  = itemView.findViewById(R.id.ivNewsImage)
         private val bookmarkBtn: ImageButton = itemView.findViewById(R.id.btnBookMark)
+        private lateinit var rootLayout: ConstraintLayout
+
 
         fun bind(news : NewsModel){
             heading.text = news.heading
@@ -46,6 +50,8 @@ class NewsAdapter(
 
             bookmarkBtn.setOnClickListener {
                 onBookmarkClick.invoke(news)
+                Snackbar.make(itemView,"Item Saved", Snackbar.LENGTH_SHORT).show()
+               // Snackbar.make(rootLayout,"Item Saved", Snackbar.LENGTH_SHORT).show()
             }
 
         }
