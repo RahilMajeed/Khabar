@@ -15,7 +15,7 @@
 
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imageView"
+            android:id="@+id/ivCommentImage"
             android:layout_width="match_parent"
             android:layout_height="350dp"
             android:scaleType="centerCrop"
@@ -33,7 +33,7 @@
             android:layout_marginBottom="16dp"
             android:textColor="@color/black"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintBottom_toBottomOf="@+id/ivCommentImage"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 

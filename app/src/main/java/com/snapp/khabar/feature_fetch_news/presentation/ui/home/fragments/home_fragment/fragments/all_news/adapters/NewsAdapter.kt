@@ -1,18 +1,20 @@
 package com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.home_fragment.fragments.all_news.adapters
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.snapp.khabar.R
+import com.snapp.khabar.feature_fetch_news.domain.util.getFormattedTimeStamp
+import com.snapp.khabar.feature_fetch_news.presentation.ui.comment.CommentsActivity
 import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.bookmark.BookmarkFragmentDirections
 import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.home_fragment.HomeFragmentDirections
 import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.search.SearchFragmentDirections
@@ -29,14 +31,14 @@ class NewsAdapter(
         private val time: TextView  = itemView.findViewById(R.id.tvTimeStamp)
         private val image: ImageView  = itemView.findViewById(R.id.ivNewsImage)
         private val bookmarkBtn: ImageButton = itemView.findViewById(R.id.btnBookMark)
-        private lateinit var rootLayout: ConstraintLayout
+        private val shareBtn: ImageButton = itemView.findViewById(R.id.btnShare)
+        private val commentBtn: ImageButton = itemView.findViewById(R.id.btnComments)
 
 
         fun bind(news : NewsModel){
             heading.text = news.heading
             desc.text = news.description
-            time.text = news.time
-//            time.text = getFormattedTimeStamp(news.time.toString())
+            time.text = news.time?.getFormattedTimeStamp()
             Glide.with(itemView.context)
                 .load(news.imageUrl)
                 .into(image)
@@ -51,9 +53,10 @@ class NewsAdapter(
             bookmarkBtn.setOnClickListener {
                 onBookmarkClick.invoke(news)
                 Snackbar.make(itemView,"Item Saved", Snackbar.LENGTH_SHORT).show()
-               // Snackbar.make(rootLayout,"Item Saved", Snackbar.LENGTH_SHORT).show()
             }
-
+            commentBtn.setOnClickListener{
+                itemView.context.startActivity(Intent(itemView.context, CommentsActivity::class.java))
+            }
         }
 
 
@@ -63,7 +66,6 @@ class NewsAdapter(
                 image to "imageTransition"
             )
 
-            // Step 2
             val action = when (adapterParent) {
                 1 -> {
                     HomeFragmentDirections.actionHomeToNewsDetailActivity(news)

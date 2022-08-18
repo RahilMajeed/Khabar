@@ -70,20 +70,19 @@
                 android:layout_centerVertical="true"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="3 hours ago"
+                android:text="Tue May 22 2022"
                 android:textColor="@color/descriptionTextColor"
                 android:textSize="10sp" />
 
-            <!--Is BookMarked Icon-->
-            <ImageButton
-                android:id="@+id/btnBookMark"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:background="@color/newsCardBackgroundColor"
-                android:src="@drawable/ic_bookmark"
-                app:tint="@color/orange" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:paddingEnd="8dp"
+            android:orientation="horizontal">
 
             <!--Comments Icon-->
             <ImageButton
@@ -91,10 +90,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="8dp"
-                android:layout_toEndOf="@+id/tvTimeStamp"
+                android:layout_margin="5dp"
                 android:background="@color/newsCardBackgroundColor"
-                android:src="@drawable/ic_comment_bubble_svgrepo_com"
+                android:src="@drawable/ic_comment_dots_svgrepo_com"
                 app:tint="@color/orange" />
 
             <!--Share Icon-->
@@ -103,12 +101,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
                 android:layout_toEndOf="@+id/btnComments"
                 android:background="@color/newsCardBackgroundColor"
                 android:src="@drawable/ic_round_share_24"
                 app:tint="@color/orange" />
 
+            <!--Is BookMarked Icon-->
+            <ImageButton
+                android:id="@+id/btnBookMark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/newsCardBackgroundColor"
+                android:src="@drawable/ic_bookmark"
+                app:tint="@color/orange" />
 
         </RelativeLayout>
 

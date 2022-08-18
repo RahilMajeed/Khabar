@@ -37,6 +37,7 @@ class HomeFragment: Fragment() {
                 2 -> "Politics"
                 3 -> "Tech"
                 4 -> "Science"
+                5 -> "Jobs"
                 else -> "Sports"
             }
 

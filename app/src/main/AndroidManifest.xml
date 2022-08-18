@@ -13,6 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Khabar">
+        <activity android:name=".feature_fetch_news.presentation.ui.comment.CommentsActivity"/>
         <activity android:name=".feature_fetch_news.presentation.ui.news_detail.NewsDetailActivity"/>
         <activity android:name=".MainActivity"/>
         <activity android:name=".feature_fetch_news.presentation.ui.home.HomeActivity" android:exported="true">

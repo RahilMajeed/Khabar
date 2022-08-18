@@ -10,6 +10,7 @@ import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.snapp.khabar.R
+import com.snapp.khabar.feature_fetch_news.domain.util.getFormattedTimeStamp
 import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.bookmark.BookmarkFragmentDirections
 import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.home_fragment.HomeFragmentDirections
 import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.search.SearchFragmentDirections
@@ -27,7 +28,7 @@ class HeadlineAdapter: RecyclerView.Adapter<HeadlineAdapter.HeadlineViewHolder>(
         fun bind(newsModel: NewsModel){
 
             tvHeadline.text = newsModel.heading
-            tvTime.text = newsModel.time
+            tvTime.text = newsModel.time?.getFormattedTimeStamp()
 //            tvTime.text = HelperFunctions.getFormattedTimeStamp(newsModel.time.toString())
 
             Glide.with(itemView.context)

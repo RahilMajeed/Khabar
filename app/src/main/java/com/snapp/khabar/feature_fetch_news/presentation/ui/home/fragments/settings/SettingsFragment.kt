@@ -1,5 +1,6 @@
 package com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.settings
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.snapp.khabar.R
+import com.snapp.khabar.feature_fetch_news.presentation.ui.comment.CommentsActivity
 
 class SettingsFragment : Fragment() {
     override fun onCreateView(
@@ -20,8 +22,13 @@ class SettingsFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_settings, container, false)
         val backButton = view.findViewById<ImageButton>(R.id.btnBack)
+        val editAccountBtn = view.findViewById<ImageButton>(R.id.btnEditaccount)
         backButton.setOnClickListener {
             findNavController().navigateUp()
+        }
+
+        editAccountBtn.setOnClickListener{
+            startActivity(Intent(context, CommentsActivity::class.java))
         }
 
         val switch1 = view.findViewById<Switch>(R.id.switch1)

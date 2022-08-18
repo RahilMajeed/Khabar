@@ -1,4 +1,4 @@
-package com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.home_fragment.fragments.all_news
+ package com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.home_fragment.fragments.all_news
 
 import android.os.Bundle
 import android.util.Log

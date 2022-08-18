@@ -19,6 +19,8 @@ open class BaseFragment(
     private val adapterType: Int
 ): Fragment() {
 
+
+
     val homeViewModel: HomeViewModel by viewModels()
 
     /**

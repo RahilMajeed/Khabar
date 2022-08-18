@@ -20,5 +20,6 @@
     <color name="headingTextColor">#DEFFFFFF</color>
     <color name="descriptionTextColor">#ABFFFFFF</color>
     <color name="iconColor">#FF9100</color>
+    <color name="shimmer_color">#E6E3E3</color>
 
 </resources>

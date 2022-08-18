@@ -7,11 +7,12 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.home_fragment.fragments.science.ScienceFragment
 import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.home_fragment.fragments.all_news.AllNewsFragment
 import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.home_fragment.fragments.business.BusinessFragment
+import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.home_fragment.fragments.jobs.JobsFragment
 import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.home_fragment.fragments.politics.PoliticsFragment
 import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.home_fragment.fragments.sports.SportsFragment
 import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.home_fragment.fragments.tech.TechFragment
 
-const val NUMBER_OF_TABS = 6
+const val NUMBER_OF_TABS = 7
 class ViewPagerAdapter(
     private val fragmentManager: FragmentManager,
     private val lifecycle: Lifecycle
@@ -34,6 +35,9 @@ class ViewPagerAdapter(
            }
            4 -> {
                ScienceFragment()
+           }
+           5 -> {
+               JobsFragment()
            }
            else -> {
                SportsFragment()
