@@ -5,10 +5,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.snapp.khabar.R
+import com.snapp.khabar.databinding.FragmentAllNewsBinding
 import com.snapp.khabar.feature_fetch_news.domain.mappers.toNewsModel
 import com.snapp.khabar.feature_fetch_news.domain.util.Result
 import com.snapp.khabar.feature_fetch_news.presentation.ui.home.HomeViewModel
@@ -21,6 +23,8 @@ class AllNewsFragment: BaseFragment(1) {
 
     lateinit var headlineAdapter : HeadlineAdapter
 
+    private var _binding: FragmentAllNewsBinding? = null
+    private val binding get() = _binding!!
 
 
     override fun onCreateView(
@@ -28,21 +32,21 @@ class AllNewsFragment: BaseFragment(1) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_all_news,container,false)
+
+        _binding = DataBindingUtil.inflate(inflater,R.layout.fragment_all_news,container,false)
+
+        setupHeadlinesRecyclerView()
+
+        setupNewsRecyclerView()
 
 
-        setupHeadlinesRecyclerView(view)
-
-        setupNewsRecyclerView(view)
-
-
-        return view
+        return binding.root
 
     }
 
     override fun onResume() {
         super.onResume()
-        observeNews(homeViewModel.allNewsLiveData)
+        observeNews(homeViewModel.allNewsLiveData,binding.shimmerLayout, binding.contentLayout)
         observeHeadlines()
     }
 
@@ -76,29 +80,27 @@ class AllNewsFragment: BaseFragment(1) {
     }
 
 
-    private fun setupHeadlinesRecyclerView(view: View) {
-        val headlineRv = view.findViewById<RecyclerView>(R.id.rvHeadLines)
+    private fun setupHeadlinesRecyclerView() {
         headlineAdapter = HeadlineAdapter()
-        headlineRv.adapter = headlineAdapter
-        headlineRv.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+
+        binding.rvHeadLines.apply {
+            adapter = headlineAdapter
+            layoutManager =
+                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        }
 
     }
 
-    private fun setupNewsRecyclerView(
-        view: View,
+    private fun setupNewsRecyclerView() {
 
-    ) {
-
-        val recyclerView = view.findViewById<RecyclerView>(R.id.rvNews)
-        recyclerView.isNestedScrollingEnabled=false
-        recyclerView.adapter = newsAdapter
-        recyclerView.layoutManager = LinearLayoutManager(context)
-    //    newsAdapter.submitData(getDummyNewsList())
-
+        binding.rvNews.apply {
+            isNestedScrollingEnabled = false
+            adapter = newsAdapter
+            layoutManager = LinearLayoutManager(context)
+        }
 
     }
-    
+
 
 }
 

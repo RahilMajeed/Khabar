@@ -1,9 +1,13 @@
 package com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments
 
 import android.util.Log
+import android.view.View
+import android.widget.ProgressBar
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveData
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.snapp.khabar.feature_fetch_news.domain.mappers.toNewsEntity
 import com.snapp.khabar.feature_fetch_news.domain.mappers.toNewsModel
 import com.snapp.khabar.feature_fetch_news.domain.model.ArticleModel
@@ -44,6 +48,36 @@ open class BaseFragment(
 
                 }
                 is Result.Success -> {
+                    Log.d(TAG, "Data ${result.data}")
+                    val data = result.data?.map {
+                        it.toNewsModel()
+                    }
+                    if (data != null) {
+                        newsAdapter.submitData(data)
+                    }
+                }
+            }
+
+        }
+    }
+
+    fun observeNews(observable: LiveData<Result<List<ArticleModel>>>, shimmerFrameLayout: ShimmerFrameLayout, content: ConstraintLayout) {
+        observable.observe(viewLifecycleOwner) { result ->
+            when (result) {
+
+                is Result.Loading -> {
+                    Log.d(TAG, "Loading: ")
+                    shimmerFrameLayout.visibility = View.VISIBLE
+                    content.visibility = View.GONE
+                }
+                is Result.Error -> {
+                    Log.d(TAG, "Error ${result.message}")
+                    shimmerFrameLayout.visibility = View.GONE
+                    content.visibility = View.VISIBLE
+                }
+                is Result.Success -> {
+                    shimmerFrameLayout.visibility = View.GONE
+                    content.visibility = View.VISIBLE
                     Log.d(TAG, "Data ${result.data}")
                     val data = result.data?.map {
                         it.toNewsModel()
