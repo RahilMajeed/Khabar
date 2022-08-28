@@ -1,4 +1,4 @@
-package com.snapp.khabar.feature_fetch_news.core
+package com.snapp.khabar.feature_fetch_news.domain.checkers
 
 import kotlinx.coroutines.flow.Flow
 

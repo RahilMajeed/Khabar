@@ -2,8 +2,8 @@ package com.snapp.khabar.feature_fetch_news.presentation.ui.base
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.snapp.khabar.feature_fetch_news.core.ConnectionStatus
-import com.snapp.khabar.feature_fetch_news.core.ConnectivityObserver
+import com.snapp.khabar.feature_fetch_news.domain.checkers.ConnectionStatus
+import com.snapp.khabar.feature_fetch_news.domain.checkers.ConnectivityObserver
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.collect

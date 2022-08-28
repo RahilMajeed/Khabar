@@ -2,27 +2,22 @@ package com.snapp.khabar.feature_fetch_news.presentation.ui.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
 import com.snapp.khabar.R
 import com.snapp.khabar.databinding.ActivityHomeLayoutBinding
+import com.snapp.khabar.feature_fetch_news.domain.checkers.InternetAwareActivity
+import com.snapp.khabar.feature_fetch_news.core.InternetAwareActivityImpl
 import com.snapp.khabar.feature_fetch_news.presentation.ui.base.InternetAwareViewModel
 import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.home_fragment.adapters.ViewPagerAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity(), InternetAwareActivity by InternetAwareActivityImpl() {
 
     private var _binding: ActivityHomeLayoutBinding? = null
     private val binding get() = _binding!!
@@ -48,13 +43,12 @@ class HomeActivity : AppCompatActivity() {
 
     private fun consumeFlows(){
         lifecycleScope.launchWhenCreated {
-            internetAwareViewModel.isConnectionAvailableChannel.collect { isConnected ->
-                if (!isConnected){
-                    binding.tvConnectionStatus.visibility = View.VISIBLE
-                } else {
-                    binding.tvConnectionStatus.visibility = View.GONE
-                }
-            }
+            // Handling Internet connectivity here
+            handleInternetAvailability(
+                binding.tvConnectionStatus,
+                internetAwareViewModel,
+                this
+            )
         }
     }
 }

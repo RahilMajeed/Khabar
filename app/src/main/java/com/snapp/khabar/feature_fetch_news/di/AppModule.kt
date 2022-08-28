@@ -1,7 +1,7 @@
 package com.snapp.khabar.feature_fetch_news.di
 
 import android.app.Application
-import com.snapp.khabar.feature_fetch_news.core.ConnectivityObserver
+import com.snapp.khabar.feature_fetch_news.domain.checkers.ConnectivityObserver
 import com.snapp.khabar.feature_fetch_news.core.InternetConnectionCheckerImpl
 import dagger.Module
 import dagger.Provides

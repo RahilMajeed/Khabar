@@ -5,7 +5,10 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.os.Build
 import androidx.annotation.RequiresApi
+import com.snapp.khabar.feature_fetch_news.domain.checkers.ConnectionStatus
+import com.snapp.khabar.feature_fetch_news.domain.checkers.ConnectivityObserver
 import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -25,6 +28,7 @@ class InternetConnectionCheckerImpl(
                 override fun onLost(network: Network) {
                     super.onLost(network)
                     launch {
+                        delay(500)
                         send(ConnectionStatus.Unavailable)
                     }
                 }
@@ -32,6 +36,7 @@ class InternetConnectionCheckerImpl(
                 override fun onUnavailable() {
                     super.onUnavailable()
                     launch {
+                        delay(500)
                         send(ConnectionStatus.Unavailable)
                     }
                 }
@@ -39,6 +44,7 @@ class InternetConnectionCheckerImpl(
                 override fun onAvailable(network: Network) {
                     super.onAvailable(network)
                     launch {
+                        delay(500)
                         send(ConnectionStatus.Connected)
                     }
                 }
