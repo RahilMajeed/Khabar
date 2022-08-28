@@ -7,23 +7,35 @@ import android.webkit.WebView
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.navArgs
 import androidx.transition.TransitionInflater
 import com.bumptech.glide.Glide
 import com.snapp.khabar.R
+import com.snapp.khabar.databinding.ActivityNewsDetailBinding
+import com.snapp.khabar.feature_fetch_news.core.InternetAwareActivityImpl
+import com.snapp.khabar.feature_fetch_news.domain.checkers.InternetAwareActivity
+import com.snapp.khabar.feature_fetch_news.presentation.ui.base.InternetAwareViewModel
 import com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.home_fragment.fragments.all_news.adapters.NewsModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
+class NewsDetailActivity : AppCompatActivity(), InternetAwareActivity by InternetAwareActivityImpl() {
 
-class NewsDetailActivity : AppCompatActivity() {
+    /**
+     * DataBinding Variables
+     * */
+    private var _binding: ActivityNewsDetailBinding? = null
+    private val binding get() = _binding!!
 
-    // Declaring widgets
-    private lateinit var newsHeadLineTv: TextView
-   // private lateinit var newsDescTv: TextView
-    private lateinit var timeTv: TextView
-    private lateinit var backBtn: ImageButton
-    private lateinit var newsIv: ImageView
-    private lateinit var webView: WebView
+    /**
+     * For Observing Internet connectivity status
+     * */
+    private val internetAwareViewModel: InternetAwareViewModel by viewModels()
+
 
     // Args
     private val newsArgs: NewsDetailActivityArgs by navArgs()
@@ -33,22 +45,8 @@ class NewsDetailActivity : AppCompatActivity() {
         window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
         val sharedElementEnterTransition = TransitionInflater.from(this).inflateTransition(android.R.transition.move)
 
+        _binding = DataBindingUtil.setContentView(this@NewsDetailActivity,R.layout.activity_news_detail)
 
-    // getWindow().setStatusBarColor(getResources().getColor(R.color.background_status_bar_filter));
-        setContentView(R.layout.activity_news_detail)
-
-
-
-        // Receiving data from previous activity
-     //   val newsItem = intent.getParcelableExtra<NewsModel>("item")
-
-        // Defining widgets
-        newsHeadLineTv = findViewById(R.id.tvNewsTitle)
-       // newsDescTv = findViewById(R.id.tvNewsDesc)
-        timeTv = findViewById(R.id.tvTimeStamp)
-        backBtn = findViewById(R.id.backKey)
-        newsIv = findViewById(R.id.ivNewsImage)
-        webView = findViewById(R.id.wvNewsDescrption)
 
         val newsItem = newsArgs.newsItem
 
@@ -59,34 +57,49 @@ class NewsDetailActivity : AppCompatActivity() {
         // Setting data on widgets
         setDataOnUi(newsItem)
 
+        consumeFlows()
 
+
+    }
+
+    private fun consumeFlows(){
+        lifecycleScope.launchWhenCreated {
+            handleInternetAvailability(
+                binding.tvConnectionStatus,
+                internetAwareViewModel,
+                this
+            )
+        }
     }
 
 
 
     private fun setupOnClickListeners() {
         // Adding back button funtionality
-        backBtn.setOnClickListener {
+        binding.backKey.setOnClickListener {
             finish()
         }
     }
 
 
     private fun setDataOnUi(item: NewsModel?){
-        if (item == null){
-            return
+        binding.apply {
+            if (item == null){
+                return
+            }
+            tvNewsTitle.text = item.heading
+            // newsDescTv.text = item.description
+            tvTimeStamp.text = item.time
+
+            // Load data in webview
+            wvNewsDescrption.loadUrl(item.url)
+
+            // Setting image through glide
+            Glide.with(this@NewsDetailActivity)
+                .load(item.imageUrl)
+                .into(ivNewsImage)
         }
-        newsHeadLineTv.text = item.heading
-       // newsDescTv.text = item.description
-        timeTv.text = item.time
 
-        // Load data in webview
-        webView.loadUrl(item.url)
-
-        // Setting image through glide
-        Glide.with(this)
-            .load(item.imageUrl)
-            .into(newsIv)
     }
 
 
