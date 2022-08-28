@@ -44,13 +44,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:cursorVisible="true"
+        android:maxLines="1"
         android:background="@android:color/transparent"
         app:layout_constraintTop_toBottomOf="@id/comments"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnBack"
         app:layout_constraintEnd_toEndOf="parent"
         android:hint="write your comment here"
         android:layout_marginTop="16dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="48dp"
         android:layout_marginEnd="8dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

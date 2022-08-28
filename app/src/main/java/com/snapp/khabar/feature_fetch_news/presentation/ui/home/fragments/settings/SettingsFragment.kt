@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.snapp.khabar.R
 import com.snapp.khabar.feature_fetch_news.presentation.ui.comment.CommentsActivity
+import com.snapp.khabar.feature_fetch_news.presentation.ui.edit_account.EditAccountActivity
 
 class SettingsFragment : Fragment() {
     override fun onCreateView(
@@ -27,10 +28,6 @@ class SettingsFragment : Fragment() {
             findNavController().navigateUp()
         }
 
-        editAccountBtn.setOnClickListener{
-            startActivity(Intent(context, CommentsActivity::class.java))
-        }
-
         val switch1 = view.findViewById<Switch>(R.id.switch1)
         switch1.setOnCheckedChangeListener { compoundButton, isEnabled ->
             Log.d("TAG", "onCreateView: isOn: $isEnabled")
@@ -40,6 +37,9 @@ class SettingsFragment : Fragment() {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
             }
+        }
+        editAccountBtn.setOnClickListener{
+            findNavController().navigate(R.id.action_settings_to_editAccountActivity)
         }
 
 

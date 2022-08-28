@@ -30,6 +30,8 @@
                 app:srcCompat="@drawable/ic_keyboard_arrow_left"
                 app:tint="@color/iconColor" />
 
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvNews"
         android:layout_width="0dp"

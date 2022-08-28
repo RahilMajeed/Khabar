@@ -7,7 +7,11 @@
     <fragment
         android:id="@+id/settings"
         android:name="com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.settings.SettingsFragment"
-        android:label="SettingsFragment" />
+        android:label="SettingsFragment" >
+        <action
+            android:id="@+id/action_settings_to_editAccountActivity"
+            app:destination="@id/editAccountActivity" />
+    </fragment>
     <fragment
         android:id="@+id/home"
         android:name="com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.home_fragment.HomeFragment"
@@ -40,6 +44,14 @@
             android:name="newsItem"
             app:argType="com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.home_fragment.fragments.all_news.adapters.NewsModel" />
     </activity>
+    <activity
+        android:id="@+id/editAccountActivity"
+        android:name="com.snapp.khabar.feature_fetch_news.presentation.ui.edit_account.EditAccountActivity"
+        android:label="EditAccountActivity" />
+    <activity
+        android:id="@+id/commentsActivity"
+        android:name="com.snapp.khabar.feature_fetch_news.presentation.ui.comment.CommentsActivity"
+        android:label="CommentsActivity" />
 
 
 </navigation>

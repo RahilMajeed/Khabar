@@ -21,7 +21,7 @@ class CommentsActivity : AppCompatActivity() {
     }
 
     private fun setUpCommentsRecyclerView() {
-        val commentsRecyclerView = findViewById<RecyclerView>(R.id.commentsRv).apply {
+        findViewById<RecyclerView>(R.id.commentsRv).apply {
             layoutManager = LinearLayoutManager(this@CommentsActivity)
             adapter = commentsAdapter
         }
