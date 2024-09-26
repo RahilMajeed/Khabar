@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/home">
+
+    <fragment
+        android:id="@+id/settings"
+        android:name="com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.settings.SettingsFragment"
+        android:label="SettingsFragment" />
+    <fragment
+        android:id="@+id/home"
+        android:name="com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.home_fragment.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_home_to_newsDetailActivity"
+            app:destination="@id/newsDetailActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/bookmarks"
+        android:name="com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.bookmark.BookmarkFragment"
+        android:label="BookmarkFragment" >
+        <action
+            android:id="@+id/action_bookmarks_to_newsDetailActivity"
+            app:destination="@id/newsDetailActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/search"
+        android:name="com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.search.SearchFragment"
+        android:label="SearchFragment" >
+        <action
+            android:id="@+id/action_search_to_newsDetailActivity"
+            app:destination="@id/newsDetailActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/newsDetailActivity"
+        android:name="com.snapp.khabar.feature_fetch_news.presentation.ui.news_detail.NewsDetailActivity"
+        android:label="NewsDetailActivity" >
+        <argument
+            android:name="newsItem"
+            app:argType="com.snapp.khabar.feature_fetch_news.presentation.ui.home.fragments.home_fragment.fragments.all_news.adapters.NewsModel" />
+    </activity>
+
+
+</navigation>
